@@ -1,0 +1,25 @@
+<div class="block">
+  
+  <h1><%= @block.title %></h1>
+
+  <div class="body mb-3">
+    <%= @block.body %>
+  </div>
+
+  <div class="blocks list-group">
+    <% @block.referenced_blocks.each do |referenced_block| %>
+      <div class="list-group-item list-group-item-action flex-column align-items-start inner-block">
+        <%= render 'simple_block', block: referenced_block %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="origin mb-3">
+    <small class="text-muted">
+      <%= @block.origin %>
+    </small>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_block_path(@block) %> |
+<%= link_to 'Back', blocks_path %>

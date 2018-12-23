@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: references
+#
+#  id                  :bigint(8)        not null, primary key
+#  block_id            :integer
+#  referenced_block_id :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  block: 
+  referenced_block: 
+
+two:
+  block: 
+  referenced_block: 

@@ -1,0 +1,24 @@
+<%= form_with(model: block, local: true) do |form| %>
+  <% if block.errors.any? %>
+    <%= render 'layouts/errors', errors: block.errors %>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :origin %>
+    <%= form.text_field :origin, class: 'form-control' %>
+  </div>
+
+  <div class="form-group actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
