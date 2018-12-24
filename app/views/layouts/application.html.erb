@@ -11,9 +11,11 @@
 
   <body>
     <%= render 'layouts/nav' %>
+    <%= yield :outer_container %>
     <div class="container">
       <%= render 'layouts/notice' %>
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

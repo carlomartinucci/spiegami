@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+@import "welcome";
+
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
@@ -10,6 +12,15 @@ h1 {
   margin-bottom: 2rem;
 }
 
-nav.navbar {
-  margin-bottom: 2rem;
+.simple-nav {
+  .navbar-brand {
+    font-size: 2rem;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+footer {
+  background-color: #F0F2F5;
+  margin-top: 3rem;
 }

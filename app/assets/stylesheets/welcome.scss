@@ -1,0 +1,11 @@
+.welcome-image {
+  width: 100%;
+  height: 70vh;
+  background-color: #B8D3F1;
+  margin-bottom: 3rem;
+
+  background-image: image-url('welcome-bigimage.png');
+  background-size: contain;
+  background-repeat:  no-repeat;
+  background-position: center;
+}

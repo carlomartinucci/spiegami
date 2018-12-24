@@ -1,9 +1,16 @@
 <div class="blocks list-group">
   <% block.referenced_blocks.each do |referenced_block| %>
-    <%= link_to referenced_blocks_block_path(referenced_block),
-      remote: true,
-      class: 'list-group-item list-group-item-action flex-column align-items-start inner-block' do %>
-      <%= render 'simple_block', block: referenced_block %>
+
+    <% if referenced_block.referenced_blocks.blank? %>
+      <div class="list-group-item flex-column align-items-start inner-block">
+        <%= render 'blocks/simple_block', block: referenced_block %>
+      </div>
+    <% else %>
+      <%= link_to referenced_blocks_block_path(referenced_block),
+        remote: true,
+        class: 'list-group-item list-group-item-action flex-column align-items-start inner-block' do %>
+        <%= render 'blocks/simple_block', block: referenced_block %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

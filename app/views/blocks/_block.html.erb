@@ -1,16 +1,16 @@
 <div class="block" data-block-id="<%= block.id %>">
   
-  <h1><%= @block.title %></h1>
+  <h1><%= block.title %></h1>
 
   <div class="body mb-3">
-    <%= @block.body %>
+    <%= block.body %>
   </div>
 
-  <%= render 'referenced_blocks', block: @block %>
+  <%= render 'blocks/referenced_blocks', block: block %>
 
   <div class="origin mb-3">
     <small class="text-muted">
-      <%= @block.origin %>
+      <%= block.origin %>
     </small>
   </div>
 </div>
