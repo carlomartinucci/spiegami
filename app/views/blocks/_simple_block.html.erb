@@ -1,9 +1,15 @@
-<div class="simple-block" data-block-id="<%= block.id %>">
-  <h5><%= block.title %></h5>
+<div class="simple-block"  data-block-id="<%= block.id %>">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <strong class="col-md-3"><%= block.title %></strong>
 
-  <div class="body">
-    <%= block.body %>
+        <div class="body col-md-9">
+          <%= block.body %>
+        </div>
+
+      </div>
+    </div>
   </div>
-
   <div class="blocks"></div>
-</div>
+</div> 

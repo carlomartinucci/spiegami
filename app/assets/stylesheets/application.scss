@@ -24,3 +24,20 @@ footer {
   background-color: #F0F2F5;
   margin-top: 3rem;
 }
+
+.simple-block {
+  padding-left: 3rem;
+
+  .card {
+    max-width: 50rem;
+  }
+}
+
+
+a.inner-block {
+  color: #212529;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
