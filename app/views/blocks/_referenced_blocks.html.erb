@@ -1,16 +1,7 @@
 <div class="blocks mt-3">
   <% block.referenced_blocks.each do |referenced_block| %>
-
-    <% if referenced_block.referenced_blocks.blank? %>
-      <div class="inner-block">
-        <%= render 'blocks/simple_block', block: referenced_block %>
-      </div>
-    <% else %>
-      <%= link_to referenced_blocks_block_path(referenced_block),
-        remote: true,
-        class: 'inner-block' do %>
-        <%= render 'blocks/simple_block', block: referenced_block %>
-      <% end %>
-    <% end %>
+    <div class="inner-block <%= 'with-referenced-blocks' if referenced_block.referenced_blocks.present? %>">
+      <%= render 'blocks/simple_block', block: referenced_block %>
+    </div>
   <% end %>
 </div>
