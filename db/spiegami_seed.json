@@ -1,0 +1,110 @@
+{
+  "title": "Spiegami è utile per formarsi un'opinione",
+  "body": "Spiegami è utile per formarsi un'opinione su vari temi, anche complessi, sia nel primo impatto che nell'approfondimento di alcune sue parti",
+  "blocks": [
+    {
+      "title": "Meno carico cognitivo",
+      "body": "Spiegami aiuta a ridurre il carico cognitivo di fronte a un argomento complesso",
+      "blocks": [
+        {
+          "title": "Visione d'insieme",
+          "body": "Spiegami fornisce una visione d'insieme di un argomento complesso",
+          "blocks": [
+            {
+              "title": "Massimo 6",
+              "body": "Ogni ragione è un blocco, che può avere massimo altri quattro blocchi a suo sostegno, in questo modo non ci sono mai più di 6 elementi diversi sui quali concentrarsi"
+            }
+          ]
+        },
+        {
+          "title": "Connessioni",
+          "body": "Spiegami facilita la comprensione delle relazioni e delle connessioni tra le premesse e le conclusioni di un'argomentazione"
+        },
+        {
+          "title": "Componenti importanti",
+          "body": "Spiegami fa emergere le, componenti importanti di un'argomentazione "
+        },
+        {
+          "title": "Struttura ad albero",
+          "body": "Spiegami struttura le argomentazioni secondo un albero, adatto ai ragionamenti"
+        }
+      ]
+    },
+    {
+      "title": "Pensiero strutturato",
+      "body": "Spiegami aiuta a strutturare il proprio pensiero",
+      "blocks": [
+        {
+          "title": "Struttura Modulare",
+          "body": "Spiegami ha una struttura modulare, è composto da blocchi piccoli e riutilizzabili "
+        },
+        {
+          "title": "Struttura ad albero",
+          "body": "Spiegami struttura le argomentazioni secondo un albero, adatto ai ragionamenti"
+        },
+        {
+          "title": "Profondità",
+          "body": "Spiegami permette di approfondire le singole parti di un argomento complesso"
+        }
+      ]
+    },
+    {
+      "title": "Plurale",
+      "body": "Spiegami è plurale, fornisce punti di vista diversi su uno stesso argomento",
+      "blocks": [
+        {
+          "title": "Costruttivo",
+          "body": "Spiegami è costruttivo, stimola la produzione di argomentazioni diverse"
+        },
+        {
+          "title": "Cooperativo",
+          "body": "Spiegami è cooperativo, stimola la collaborazione tra persone con idee simili"
+        },
+        {
+          "title": "Basato su fonti",
+          "body": "Spiegami prevede la possibilità di specificare le fonti"
+        }
+      ]
+    },
+    {
+      "title": "Unico e diverso",
+      "body": "Spiegami è unico e diverso da ogni altra piattaforma",
+      "blocks": [
+        {
+          "title": "Non un social network",
+          "body": "Spiegami è diverso da un social network",
+          "blocks": [
+            {
+              "title": "Argomenti, non emozioni",
+              "body": "Spiegami è basato su argomenti, non sull'emotività"
+            }
+          ]
+        },
+        {
+          "title": "Non un'enciclopedia",
+          "body": "Spiegami è diverso da un'enciclopedia ",
+          "blocks": [
+            {
+              "title": "Plurale",
+              "body": "Spiegami è plurale, fornisce punti di vista diversi su uno stesso argomento" 
+            }
+          ]
+        },
+        {
+          "title": "Non un blog",
+          "body": "Spiegami è diverso da un blog"
+        },
+        {
+          "title": "Non un forum",
+          "body": "Spiegami è diverso da un forum",
+          "blocks": [
+            {
+              "title": "Argomenti, non discussioni",
+              "body": "Spiegami è basato su argomenti, non sulle discussioni o su botta e risposta"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_23_105744) do
+ActiveRecord::Schema.define(version: 2018_12_24_102610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2018_12_23_105744) do
     t.string "origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "objections", force: :cascade do |t|
+    t.text "body"
+    t.integer "reference_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reference_id"], name: "index_objections_on_reference_id"
   end
 
   create_table "references", force: :cascade do |t|

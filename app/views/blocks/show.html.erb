@@ -8,9 +8,9 @@
 
   <div class="blocks list-group">
     <% @block.referenced_blocks.each do |referenced_block| %>
-      <div class="list-group-item list-group-item-action flex-column align-items-start inner-block">
+      <a href="<%= block_path(referenced_block) %>" class="list-group-item list-group-item-action flex-column align-items-start inner-block">
         <%= render 'simple_block', block: referenced_block %>
-      </div>
+      </a>
     <% end %>
   </div>
 

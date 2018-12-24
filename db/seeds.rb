@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+file = File.read(Rails.root.join("db/spiegami_seed.json"))
+block_tree = JSON.parse(file)
+Block.create_block_tree block_tree

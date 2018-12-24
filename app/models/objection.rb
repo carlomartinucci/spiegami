@@ -1,0 +1,2 @@
+class Objection < ApplicationRecord
+end
