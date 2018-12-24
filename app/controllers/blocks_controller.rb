@@ -1,10 +1,13 @@
 class BlocksController < ApplicationController
-  before_action :set_block, only: [:show, :edit, :update, :destroy]
+  before_action :set_block, only: [:show, :edit, :update, :destroy, :referenced_blocks]
 
   # GET /blocks
   # GET /blocks.json
   def index
     @blocks = Block.all
+  end
+
+  def referenced_blocks
   end
 
   # GET /blocks/1
