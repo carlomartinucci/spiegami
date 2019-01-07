@@ -9,14 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'layouts/nav' %>
-    <%= yield :outer_container %>
-    <div class="container">
-      <%= render 'layouts/notice' %>
-      <%= yield %>
-    </div>
-    <%= yield :bottom_container %>
-    <%= render 'layouts/footer' %>
+  <body style="width: 98vw; height: 98vh; margin: auto;">
+    <%= yield %>
   </body>
 </html>
