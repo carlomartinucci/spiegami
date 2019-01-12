@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get :prototype, to: 'welcome#prototype', as: :prototype
+  get :write, to: 'welcome#write', as: :write
 end
