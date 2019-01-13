@@ -1,0 +1,17 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single", "jsx-double"],
+    "object-literal-sort-keys": false,
+    "member-access": false,
+    "curly": [true, "as-needed"],
+    "no-submodule-imports": [true, "lodash"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "trailing-comma": false,
+    "no-console": [true, "log"],
+    "no-unsafe-any": true
+  }
+}
