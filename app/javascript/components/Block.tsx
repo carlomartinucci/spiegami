@@ -72,10 +72,17 @@ const blockTarget = {
   },
 }
 
+interface IBlock {
+  id: number,
+  text: string,
+  blocks?: IBlock[]
+}
+
 export interface IBlockProps {
   id: any
   text: string
   index: number
+  blocks?: IBlock[]
   moveBlock: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -97,11 +104,27 @@ class Block extends React.Component<
       isDragging,
       connectDragSource,
       connectDropTarget,
+      blocks
     } = this.props
     const opacity = isDragging ? 0 : 1
 
     return connectDragSource(
-      connectDropTarget(<div className="block" style={{ opacity }}>{text}</div>),
+      connectDropTarget(
+        <div className="block" style={{ opacity }}>
+          {text}
+          {blocks && blocks.map((nestedBlock, i) => (
+            <Block
+              key={nestedBlock.id}
+              index={i}
+              moveBlock={(a, b) => {}}
+              {...nestedBlock}
+              isDragging={isDragging}
+              connectDragSource={connectDragSource}
+              connectDropTarget={connectDropTarget}
+            />
+          ))}
+        </div>
+      )
     )
   }
 }

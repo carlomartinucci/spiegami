@@ -8,19 +8,28 @@ import Block from './Block'
 
 const update = require('immutability-helper')
 
+interface IBlock {
+  id: number,
+  text: string,
+  blocks?: IBlock[]
+}
+
 export interface IState {
-  blocks: Array<{
-    id: number
-    text: string
-  }>
+  writtenBlocks: IBlock[]
 }
 
 class BlocksContainer extends React.Component<{}, IState> {
   public state = {
-    blocks: [
+    writtenBlocks: [
       {
         id: 1,
         text: 'Write a cool JS library',
+        blocks: [
+          {
+            id: 8,
+            text: 'MAGA'
+          }
+        ]
       },
       {
         id: 2,
@@ -51,17 +60,16 @@ class BlocksContainer extends React.Component<{}, IState> {
   }
 
   public render() {
-    const { blocks } = this.state
+    const { writtenBlocks } = this.state
 
     return (
       <div className="block-container">
-        {blocks.map((block, i) => (
+        {writtenBlocks.map((block, i) => (
           <Block
             key={block.id}
             index={i}
-            id={block.id}
-            text={block.text}
             moveBlock={this.moveBlock}
+            {...block}
           />
         ))}
       </div>
@@ -69,12 +77,12 @@ class BlocksContainer extends React.Component<{}, IState> {
   }
 
   private moveBlock = (dragIndex: number, hoverIndex: number) => {
-    const { blocks } = this.state
-    const dragBlock = blocks[dragIndex]
+    const { writtenBlocks } = this.state
+    const dragBlock = writtenBlocks[dragIndex]
 
     this.setState(
       update(this.state, {
-        blocks: {
+        writtenBlocks: {
           $splice: [[dragIndex, 1], [hoverIndex, 0, dragBlock]],
         },
       }),
