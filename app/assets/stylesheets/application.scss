@@ -13,12 +13,23 @@ h1 {
   margin-bottom: 2rem;
 }
 
+h4 {
+  color: #b0d2fb;
+  text-transform: uppercase;
+  border-bottom: 2px solid;
+}
+
 .simple-nav {
   .navbar-brand {
     font-size: 2rem;
     display: block;
     margin: 0 auto;
   }
+}
+
+hr {
+  margin: 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 footer {
@@ -53,5 +64,15 @@ footer {
       }
     }
   }
+}
+
+.write-left {
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.write-right {
+  background-color: #F0F2F5;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
 

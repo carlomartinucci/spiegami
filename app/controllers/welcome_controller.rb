@@ -6,4 +6,7 @@ class WelcomeController < ApplicationController
   def prototype
     render layout: 'empty'
   end
+
+  def write
+  end
 end

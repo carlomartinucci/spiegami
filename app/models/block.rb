@@ -11,7 +11,6 @@
 #
 
 class Block < ApplicationRecord
-
   validates :title, uniqueness: true, presence: true, allow_blank: false
   validates :body, presence: true, allow_blank: false
 
@@ -19,7 +18,7 @@ class Block < ApplicationRecord
   has_many :referenced_blocks, through: :references, foreign_key: :referenced_block_id
 
   def to_param
-    "#{self.id}-#{self.title}"
+    "#{id}-#{title}"
   end
 
   def self.create_block_tree(block_tree)
@@ -36,6 +35,4 @@ class Block < ApplicationRecord
 
     block
   end
-
-
 end

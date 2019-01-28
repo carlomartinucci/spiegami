@@ -7,9 +7,25 @@
 }
 
 .block {
-  border: 1px dashed gray;
-  padding: 0.5rem 1rem;
-  margin-bottom: .5rem;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 1rem;
   background-color: white;
   cursor: move;
+}
+
+.blocks {
+  margin-left: 20px;
+}
+
+.blocks .block {
+  background-color: #e3ffe1;
+}
+
+.blocks .blocks .block {
+  background-color: #dfeaf7;
+}
+
+.block--phantom {
+  opacity: 0.3;
 }

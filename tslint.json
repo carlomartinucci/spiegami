@@ -3,6 +3,7 @@
   "rules": {
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
+    "jsx-boolean-value": "never",
     "semicolon": [true, "never"],
     "quotemark": [true, "single", "jsx-double"],
     "object-literal-sort-keys": false,

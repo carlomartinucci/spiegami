@@ -10,11 +10,9 @@
 #
 
 class Reference < ApplicationRecord
-
   validates :block, presence: true, uniqueness: { scope: :referenced_block }
   validates :referenced_block, presence: true
 
   belongs_to :block
   belongs_to :referenced_block, class_name: 'Block'
-
 end
