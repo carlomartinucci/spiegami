@@ -4,6 +4,8 @@ import produce from 'immer'
 
 import { IBlock } from '../components/Block'
 
+import uuid from '../utils/uuid'
+
 interface IUseNewBlock {
   blocks: IBlock[]
   setBlocks: React.Dispatch<React.SetStateAction<IBlock[]>>
@@ -11,7 +13,7 @@ interface IUseNewBlock {
 
 export const useNewBlock = ({ blocks, setBlocks }: IUseNewBlock) => {
   const emptyFactory = () => {
-    return { id: blocks[blocks.length - 1].id + 1, title: '', body: '', parentId: null }
+    return { id: uuid(), title: '', body: '', parentId: null }
   }
 
   const [block, setBlock] = React.useState(emptyFactory())

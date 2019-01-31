@@ -1,5 +1,8 @@
 import * as React from 'react'
-import { IBlock, LeftBlock, MainBlock, NewBlock, RightBlock } from './components/Block'
+import { IBlock, LeftBlock, MainBlock, NewBlock, DroppablePhantomBlock, RightBlock } from './components/Block'
+
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 const initialBlocks: IBlock[] = [{
   id: 0,
@@ -16,6 +19,8 @@ const initialBlocks: IBlock[] = [{
 const Write = (props: {}) => {
   const [blocks, setBlocks] = React.useState(initialBlocks)
   const mainBlock = blocks.find(block => block.id === 0)
+  const leftBlocks = blocks.filter(block => block.parentId === null && block.id !== 0)
+  const rightBlocks = blocks.filter(block => block.parentId === 0)
 
   return <div>
     <hr/>
@@ -29,11 +34,12 @@ const Write = (props: {}) => {
         <h4 className="mt-0 mb-4">Scrivi i tuoi blocchi</h4>
 
         {
-          blocks.filter(block => block.parentId === null)
-            .map(block => (
-              <LeftBlock key={block.id} block={block} blocks={blocks} setBlocks={setBlocks} />
-            ))
+          leftBlocks.map(block => (
+            <LeftBlock key={block.id} block={block} blocks={blocks} setBlocks={setBlocks} />
+          ))
         }
+
+        <DroppablePhantomBlock parentId={null}/>
 
         <hr className="my-4" />
 
@@ -44,11 +50,12 @@ const Write = (props: {}) => {
         <h4 className="mt-0 mb-4">Organizza i tuoi blocchi</h4>
 
         {
-          blocks.filter(block => block.parentId === 0)
-            .map(block => (
-              <RightBlock key={block.id} block={block} blocks={blocks} />
-            ))
+          rightBlocks.map(block => (
+            <RightBlock key={block.id} block={block} blocks={blocks} setBlocks={setBlocks} />
+          ))
         }
+
+        <DroppablePhantomBlock parentId={0} />
       </div>
     </div>
 
@@ -56,4 +63,4 @@ const Write = (props: {}) => {
   </div>
 }
 
-export default Write
+export default DragDropContext(HTML5Backend)(Write)
