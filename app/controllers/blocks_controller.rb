@@ -1,5 +1,6 @@
 class BlocksController < ApplicationController
   before_action :set_block, only: [:show, :edit, :update, :destroy, :referenced_blocks]
+  skip_before_action :verify_authenticity_token, only: :create_block_tree
 
   # GET /blocks
   # GET /blocks.json
@@ -38,6 +39,15 @@ class BlocksController < ApplicationController
         format.json { render json: @block.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST /blocks/create_block_tree
+  def create_block_tree
+    block = Block.create_block_tree(params[:block_tree])
+
+    flash.now[:notice] = 'Argomentazione creata con successo! Eccola!'
+
+    render json: { redirect: block_path(block) }
   end
 
   # PATCH/PUT /blocks/1

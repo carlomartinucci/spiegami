@@ -4,6 +4,8 @@ import { IBlock, LeftBlock, MainBlock, NewBlock, DroppablePhantomBlock, RightBlo
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
+import create from './controllers/create'
+
 const initialBlocks: IBlock[] = [{
   id: 0,
   title: 'Lo smartworking è un diritto',
@@ -22,10 +24,14 @@ const Write = (props: {}) => {
   const leftBlocks = blocks.filter(block => block.parentId === null && block.id !== 0)
   const rightBlocks = blocks.filter(block => block.parentId === 0)
 
+  const handlePublish = () => {
+    create(blocks).then(response => response.json()).then(({ redirect }) => { window.location.href = redirect })
+  }
+
   return <div>
     <hr/>
 
-    <MainBlock block={mainBlock} onSubmit={undefined}/>
+    <MainBlock block={mainBlock} onSubmit={handlePublish}/>
 
     <hr/>
 
