@@ -37,6 +37,7 @@ export const LeftBlock = (props: ILeftBlock) => {
   const { isEditing, toggleIsEditing, handleChangeTitle, handleChangeBody } = useLeftBlock(props)
 
   const setParentId = (parentId: number | null) => {
+    if (!canSetParentId(blocks, block, parentId)) return
     setBlocks(
       produce(blocks, draftBlocks => {
         const index = draftBlocks.findIndex(draftBlock => draftBlock.id === block.id)
@@ -76,11 +77,24 @@ interface IRightBlock {
   setBlocks: React.Dispatch<React.SetStateAction<IBlock[]>>
 }
 
+const canSetParentId = (blocks: IBlock[], block: IBlock, parentId: number | null): boolean => {
+  if (block.id === parentId) return false
+  if (parentId === null) return true
+  if (parentId === 0) return true
+
+  const targetBlock = blocks.find(b => b.id === parentId)
+
+  if (!targetBlock) return false
+  return canSetParentId(blocks, block, targetBlock.parentId)
+}
+
 export const RightBlock = (props: IRightBlock) => {
   const { block, blocks, setBlocks } = props
   const innerBlocks = blocks.filter(innerBlock => innerBlock.parentId === block.id)
 
   const setParentId = (parentId: number | null) => {
+    if (!canSetParentId(blocks, block, parentId)) return
+
     setBlocks(
       produce(blocks, draftBlocks => {
         const index = draftBlocks.findIndex(draftBlock => draftBlock.id === block.id)
@@ -257,9 +271,9 @@ const blockTarget = {
     return
   },
 
-  canDrop(props: IPhantomBlockProps, monitor: DropTargetMonitor) {
-    return props.parentId !== monitor.getItem().id && props.parentId !== monitor.getItem().parentId
-  }
+  // canDrop(props: IPhantomBlockProps, monitor: DropTargetMonitor) {
+  //   return props.parentId !== monitor.getItem().id && props.parentId !== monitor.getItem().parentId
+  // }
 }
 
 export const DroppablePhantomBlock = DropTarget<IPhantomBlockProps, IPhantomBlockTargetCollectedProps>(
