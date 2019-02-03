@@ -1,25 +1,28 @@
 import * as React from 'react'
-import { IBlock, LeftBlock, MainBlock, NewBlock, DroppablePhantomBlock, RightBlock } from './components/Block'
+import { DroppablePhantomBlock, IBlock, LeftBlock, MainBlock, NewBlock, RightBlock } from './components/Block'
 
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
 import create from './controllers/create'
 
-const initialBlocks: IBlock[] = [{
-  id: 0,
-  title: 'Lo smartworking è un diritto',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus repellendus eum dolores molestias earum quisquam, provident alias! Sapiente, ullam, culpa et iure libero, autem maiores in voluptate non unde aspernatur!',
-  parentId: null
-}, {
-  id: 1,
-  title: 'Questo è un titolo 1',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus repellendus eum dolores molestias earum quisquam, provident alias! Sapiente, ullam, culpa et iure libero, autem maiores in voluptate non unde aspernatur!',
-  parentId: null
-}]
-
-const Write = (props: {}) => {
-  const [blocks, setBlocks] = React.useState(initialBlocks)
+const Write = (props: {title?: string}) => {
+  const [blocks, setBlocks] = React.useState<IBlock[]>([{
+    id: 0,
+    title: props.title || '',
+    body: '',
+    parentId: null
+  }, {
+    id: 1,
+    title: 'Title ahahaha anche un po lungo dai',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quo quibusdam perspiciatis eaque a possimus accusamus mollitia recusandae esse veritatis aliquam, quis vitae saepe ipsa quisquam distinctio, corporis ducimus quas.',
+    parentId: null
+  }, {
+    id: 2,
+    title: 'Title due',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quo quibusdam perspiciatis eaque a possimus accusamus mollitia recusandae esse veritatis aliquam, quis vitae saepe ipsa quisquam distinctio, corporis ducimus quas.',
+    parentId: 0
+  }])
   const mainBlock = blocks.find(block => block.id === 0)
   const leftBlocks = blocks.filter(block => block.parentId === null && block.id !== 0)
   const rightBlocks = blocks.filter(block => block.parentId === 0)
@@ -31,7 +34,7 @@ const Write = (props: {}) => {
   return <div>
     <hr/>
 
-    <MainBlock block={mainBlock} onSubmit={handlePublish}/>
+    <MainBlock block={mainBlock} blocks={blocks} setBlocks={setBlocks} onSubmit={handlePublish}/>
 
     <hr/>
 

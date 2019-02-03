@@ -8,5 +8,6 @@ class WelcomeController < ApplicationController
   end
 
   def write
+    @title = 'Lo smartworking è un diritto'
   end
 end

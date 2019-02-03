@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useLeftBlock, useNewBlock } from '../hooks/blocks'
+import { useEditBlock, useNewBlock } from '../hooks/blocks'
 
 import produce from 'immer'
 
@@ -34,7 +34,7 @@ export const LeftBlock = (props: ILeftBlock) => {
   const { block, blocks, setBlocks } = props
   const innerBlocks = blocks.filter(innerBlock => innerBlock.parentId === block.id)
 
-  const { isEditing, toggleIsEditing, handleChangeTitle, handleChangeBody } = useLeftBlock(props)
+  const { handleChangeTitle, handleChangeBody } = useEditBlock(props)
 
   const setParentId = (parentId: number | null) => {
     if (!canSetParentId(blocks, block, parentId)) return
@@ -47,19 +47,12 @@ export const LeftBlock = (props: ILeftBlock) => {
   }
 
   return <div>
-    { isEditing
-      ? <EditBlock
-        block={block}
-        handleChangeTitle={handleChangeTitle}
-        handleChangeBody={handleChangeBody}
-        toggleIsEditing={toggleIsEditing}
-      />
-      : <DraggableBlock block={block} setParentId={setParentId}>
-        <div className="col-lg-12">
-          <button className="btn btn-info" onClick={toggleIsEditing}>EDIT</button>
-        </div>
-      </DraggableBlock>
-    }
+    <DraggableEditBlock
+      setParentId={setParentId}
+      block={block}
+      handleChangeTitle={handleChangeTitle}
+      handleChangeBody={handleChangeBody}
+    />
 
     <div className="blocks">
       {
@@ -124,41 +117,37 @@ interface INewBlock {
 }
 
 export const NewBlock = (props: INewBlock) => {
-  const { isVisible, setVisible, block, handleChangeTitle, handleChangeBody, create } = useNewBlock(props)
+  const { block, handleChangeTitle, handleChangeBody, create } = useNewBlock(props)
 
-  if (isVisible)
-    return (
-      <div>
-        <div className="block row no-gutters">
-          <div className="col-lg-3">
-            <b><input type="text" onChange={handleChangeTitle} value={block.title} /></b>
-          </div>
-
-          <div className="col-lg-9">
-            <input type="text" onChange={handleChangeBody} value={block.body} />
-          </div>
-        </div>
-        <button onClick={create}>SAVE</button>
+  return (<div>
+    <div className="block row no-gutters">
+      <div className="col-lg-3">
+        <textarea placeholder="clicca per scrivere il titolo" onChange={handleChangeTitle} value={block.title} rows={4} style={{border: 'none', width: '100%', fontWeight: 'bold'}}/>
       </div>
-    )
-  else
-    return (
-      <button className="btn btn-outline-primary" onClick={setVisible}>
-        + Aggiungi blocco
-      </button>
-    )
+
+      <div className="col-lg-9">
+        <textarea placeholder="clicca per scrivere il corpo" onChange={handleChangeBody} value={block.body} rows={4} style={{border: 'none', width: '100%'}} />
+      </div>
+
+      <div className="col-lg-12 text-right">
+        <button className="btn btn-info" onClick={create} disabled={!block.title || !block.body}>Aggiungi</button>
+      </div>
+    </div>
+  </div>)
 }
 
 export const MainBlock = (props: any) => {
-  const { block, onSubmit } = props
+  const { block, blocks, setBlocks, onSubmit } = props
+  const { handleChangeTitle, handleChangeBody } = useEditBlock({ block, blocks, setBlocks })
+
   return (
     <div className="px-5 my-4">
       <div className="row">
         <div className="col-lg-8">
           <h4 className="mt-0 mb-4">Stai argomentando sul tema</h4>
-          <h2>{block.title}</h2>
+          <input type="text" onChange={handleChangeTitle} value={block.title} style={{border: 'none', width: '100%', fontSize: '2rem'}}/>
 
-          <p>{block.body}</p>
+          <textarea placeholder="Clicca per inserire la descrizone del tuo tema" onChange={handleChangeBody} value={block.body} rows={3} style={{border: 'none', width: '100%'}} />
         </div>
 
         <div className="col-lg-4 text-right">
@@ -218,32 +207,35 @@ interface IBlockSourceCollectedProps {
   connectDragSource: ConnectDragSource
 }
 
-const DraggableBlock = DragSource<IBlockProps & {setParentId: any}, IBlockSourceCollectedProps>(
-  ItemTypes.BLOCK,
-  blockSource,
-  (connect: DragSourceConnector, monitor: DragSourceMonitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  }),
-)(Block)
+const makeDraggable = (Component: React.ComponentType<IBlockProps & {setParentId: any} & IBlockSourceCollectedProps & any>) => {
+  return DragSource<IBlockProps & {setParentId: any} & any, IBlockSourceCollectedProps>(
+    ItemTypes.BLOCK,
+    blockSource,
+    (connect: DragSourceConnector, monitor: DragSourceMonitor) => ({
+      connectDragSource: connect.dragSource(),
+      isDragging: monitor.isDragging(),
+    }),
+  )(Component)
+}
+
+const DraggableBlock = makeDraggable(Block)
 
 const EditBlock = (props: any) => {
-  const { block, handleChangeTitle, handleChangeBody, toggleIsEditing } = props
+  const { block, handleChangeTitle, handleChangeBody } = props
+  const { connectDragSource, isDragging } = props
+  const opacity = isDragging ? 0 : 1
 
-  return <div className="block row no-gutters">
-    <div className="col-lg-3">
-      <b><input type="text" onChange={handleChangeTitle} value={block.title} /></b>
+  return connectDragSource(<div className="block row no-gutters">
+    <div className="col-lg-3" style={{ opacity }}>
+      <textarea onChange={handleChangeTitle} value={block.title} rows={4} style={{border: 'none', width: '100%', fontWeight: 'bold'}}/>
     </div>
 
     <div className="col-lg-9">
-      <input type="text" onChange={handleChangeBody} value={block.body} />
+      <textarea onChange={handleChangeBody} value={block.body} rows={4} style={{border: 'none', width: '100%'}} />
     </div>
-
-    <div className="col-lg-12">
-      <button className="btn btn-primary" onClick={toggleIsEditing}>DONE</button>
-    </div>
-  </div>
+  </div>)
 }
+const DraggableEditBlock = makeDraggable(EditBlock)
 
 const PhantomBlock = (props: IPhantomBlockProps & IPhantomBlockTargetCollectedProps) => {
   const { connectDropTarget } = props

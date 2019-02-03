@@ -1,3 +1,5 @@
 <% content_for :bottom_container do %>
-  <%= react_component 'Write' %>
+  <%= react_component 'Write', {
+    title: @title
+  } %>
 <% end %>
