@@ -14,14 +14,9 @@ const Write = (props: {title?: string}) => {
     parentId: null
   }, {
     id: 1,
-    title: 'Title ahahaha anche un po lungo dai',
+    title: 'Esempio di titolo',
     body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quo quibusdam perspiciatis eaque a possimus accusamus mollitia recusandae esse veritatis aliquam, quis vitae saepe ipsa quisquam distinctio, corporis ducimus quas.',
     parentId: null
-  }, {
-    id: 2,
-    title: 'Title due',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quo quibusdam perspiciatis eaque a possimus accusamus mollitia recusandae esse veritatis aliquam, quis vitae saepe ipsa quisquam distinctio, corporis ducimus quas.',
-    parentId: 0
   }])
   const mainBlock = blocks.find(block => block.id === 0)
   const leftBlocks = blocks.filter(block => block.parentId === null && block.id !== 0)

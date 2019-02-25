@@ -239,9 +239,12 @@ const DraggableEditBlock = makeDraggable(EditBlock)
 
 const PhantomBlock = (props: IPhantomBlockProps & IPhantomBlockTargetCollectedProps) => {
   const { connectDropTarget } = props
+  let placeholder = 'trascina qui un blocco per modificarlo'
+  if (props.parentId !== null)
+    placeholder = 'trascina qui un blocco per aggiungerlo come ragione'
   return (connectDropTarget(
     <div>
-      <div className="block block--phantom">trascina qui per aggiungere una ragione</div>
+      <div className="block block--phantom">{placeholder}</div>
     </div>
   ))
 }
